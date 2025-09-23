@@ -4,7 +4,7 @@ RUN dnf install -y /tmp/*.rpm &&\
     dnf clean all &&\
     rm -rf /var/cache/yum/* /tmp/*.rpm
 
-FROM container-registry.oracle.com/os/oraclelinux:8-slim
+FROM container-registry.oracle.com/os/oraclelinux:8
 COPY --from=0 /usr/share/licenses/etcd* /usr/share/licenses/
 COPY --from=0 /usr/bin/etcdctl /usr/local/bin/etcdctl
 COPY --from=0 /usr/bin/etcd /usr/local/bin/etcd
