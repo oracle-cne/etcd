@@ -31,7 +31,7 @@ Group:		System/Management
 URL:		https://github.com/coreos/etcd
 Vendor:		Oracle America
 Source0:        etcd-%{version}.tar.bz2
-Patch0:         makefile.patch
+Patch0:         build_lib.sh.patch
 
 BuildRequires:  	golang
 BuildRequires:  	libpcap-devel

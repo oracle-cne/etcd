@@ -1,0 +1,40 @@
+diff --git a/scripts/build_lib.sh b/scripts/build_lib.sh
+index bd6279c8a..2a148f9c9 100755
+--- a/scripts/build_lib.sh
++++ b/scripts/build_lib.sh
+@@ -30,7 +30,7 @@ etcd_build() {
+     # Static compilation is useful when etcd is run in a container. $GO_BUILD_FLAGS is OK
+     # shellcheck disable=SC2086
+     run env "${GO_BUILD_ENV[@]}" go build $GO_BUILD_FLAGS \
+-      -trimpath \
++      -trimpath=false \
+       -installsuffix=cgo \
+       "-ldflags=${GO_LDFLAGS[*]}" \
+       -o="../${out}/etcd" . || return 2
+@@ -41,7 +41,7 @@ etcd_build() {
+   (
+     cd ./etcdutl
+     run env GO_BUILD_FLAGS="${GO_BUILD_FLAGS}" "${GO_BUILD_ENV[@]}" go build $GO_BUILD_FLAGS \
+-      -trimpath \
++      -trimpath=false \
+       -installsuffix=cgo \
+       "-ldflags=${GO_LDFLAGS[*]}" \
+       -o="../${out}/etcdutl" . || return 2
+@@ -52,7 +52,7 @@ etcd_build() {
+   (
+     cd ./etcdctl
+     run env GO_BUILD_FLAGS="${GO_BUILD_FLAGS}" "${GO_BUILD_ENV[@]}" go build $GO_BUILD_FLAGS \
+-      -trimpath \
++      -trimpath=false \
+       -installsuffix=cgo \
+       "-ldflags=${GO_LDFLAGS[*]}" \
+       -o="../${out}/etcdctl" . || return 2
+@@ -83,7 +83,7 @@ tools_build() {
+     run rm -f "${out}/${tool}"
+     # shellcheck disable=SC2086
+     run env GO_BUILD_FLAGS="${GO_BUILD_FLAGS}" CGO_ENABLED=${CGO_ENABLED} go build ${GO_BUILD_FLAGS} \
+-      -trimpath \
++      -trimpath=false \
+       -installsuffix=cgo \
+       "-ldflags=${GO_LDFLAGS[*]}" \
+       -o="${out}/${tool}" "./${tool}" || return 2
