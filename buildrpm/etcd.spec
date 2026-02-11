@@ -61,7 +61,7 @@ export ETCD_SETUP_GOPATH=1
 GOENV_GOARCH=$(go env | grep GOARCH | sed 's/"//g' | tr -d "'")
 export ${GOENV_GOARCH}
 echo $GOARCH
-GO_LDFLAGS="-X main.VERSION=v%{version}" ./build.sh
+GO_BUILD_FLAGS="-X main.VERSION=v%{version}" make build
 
 %install
 install -D -p -m 0755 bin/%{system_name} %{buildroot}%{_bindir}/%{system_name}
