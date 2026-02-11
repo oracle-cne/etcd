@@ -1,7 +1,7 @@
-diff --git a/scripts/build_lib.sh b/scripts/build_lib.sh
+diff --git scripts/build_lib.sh scripts/build_lib.sh
 index bd6279c8a..2a148f9c9 100755
---- a/scripts/build_lib.sh
-+++ b/scripts/build_lib.sh
+--- scripts/build_lib.sh
++++ scripts/build_lib.sh
 @@ -30,7 +30,7 @@ etcd_build() {
      # Static compilation is useful when etcd is run in a container. $GO_BUILD_FLAGS is OK
      # shellcheck disable=SC2086
