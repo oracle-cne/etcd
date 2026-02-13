@@ -31,7 +31,7 @@ Group:		System/Management
 URL:		https://github.com/coreos/etcd
 Vendor:		Oracle America
 Source0:        etcd-%{version}.tar.bz2
-Patch0:         makefile.patch
+Patch0:         build_lib.sh.patch
 
 BuildRequires:  	golang
 BuildRequires:  	libpcap-devel
@@ -61,7 +61,7 @@ export ETCD_SETUP_GOPATH=1
 GOENV_GOARCH=$(go env | grep GOARCH | sed 's/"//g' | tr -d "'")
 export ${GOENV_GOARCH}
 echo $GOARCH
-GO_LDFLAGS="-X main.VERSION=v%{version}" ./build.sh
+GO_LDFLAGS="-X main.VERSION=v%{version}" scripts/build.sh
 
 %install
 install -D -p -m 0755 bin/%{system_name} %{buildroot}%{_bindir}/%{system_name}
