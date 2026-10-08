@@ -15,7 +15,7 @@
 
 Name:           %{_name}-container-image
 Version:        3.6.14 
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A highly-available key value store for shared configuration
 License:        Apache-2.0
 Group:          System/Management
@@ -48,5 +48,8 @@ docker save -o %{_name}.tar %{docker_tag}
 /usr/local/share/olcne/%{_name}.tar
 
 %changelog
+* Thu Oct 08 2026 Oracle Cloud Native Environment Authors <noreply@oracle.com> - 3.6.14-2
+- Update dependencies to address security vulnerabilities
+
 * Thu Jul 23 2026 Oracle Cloud Native Environment Authors <noreply@oracle.com> - 3.6.14-1
 - Added Oracle specific build files
