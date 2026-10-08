@@ -24,7 +24,7 @@
 
 Name:		etcd
 Version:	3.5.32	
-Release:	1%{?dist}
+Release:	2%{?dist}
 Summary:	A highly-available key value store for shared configuration
 License:	ASL 2.0
 Group:		System/Management
@@ -78,5 +78,8 @@ install -d -m 0755 %{buildroot}%{_sharedstatedir}/%{system_name}
 %{_bindir}/%{system_name}utl
 
 %changelog
+* Thu Oct 08 2026 Oracle Cloud Native Environment Authors <noreply@oracle.com> - 3.5.32-2
+- Update dependencies and enforce watch range authorization
+
 * Wed Jul 01 2026 Oracle Cloud Native Environment Authors <noreply@oracle.com> - 3.5.32-1
 - Added Oracle specific build files
