@@ -556,7 +556,7 @@ func TestV3AuthWatchErrorAndWatchId0(t *testing.T) {
 			password: "user1-123",
 			role:     "role1",
 			key:      "k1",
-			end:      "k2",
+			end:      "",
 		},
 	}
 
@@ -588,6 +588,17 @@ func TestV3AuthWatchErrorAndWatchId0(t *testing.T) {
 	wChan := c.Watch(ctx, "non-allowed-key", clientv3.WithRev(1))
 	watchResponse := <-wChan
 	testutil.AssertNotNil(t, watchResponse.Err()) // permission denied
+
+	// An exact-key grant must not authorize an open-ended watch.
+	fromKey := c.Watch(ctx, "k1", clientv3.WithFromKey(), clientv3.WithCreatedNotify())
+	select {
+	case response := <-fromKey:
+		if !eqErrGRPC(response.Err(), rpctypes.ErrPermissionDenied) || !response.Canceled {
+			t.Fatalf("expected canceled permission-denied watch, got %+v, error %v", response, response.Err())
+		}
+	case <-ctx.Done():
+		t.Fatal("timed out waiting for open-ended watch denial")
+	}
 
 	_, err := c.Put(ctx, "k1", "val")
 	if err != nil {
