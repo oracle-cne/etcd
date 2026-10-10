@@ -15,7 +15,7 @@
 
 Name:           %{_name}-container-image
 Version:        3.6.14 
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A highly-available key value store for shared configuration
 License:        Apache-2.0
 Group:          System/Management
@@ -32,7 +32,7 @@ A highly-available key value store for shared configuration.
 %build
 %global rpm_name %{_name}-%{version}-%{release}.%{_build_arch}
 yum clean all && yumdownloader --destdir=${PWD}/rpms %{rpm_name}
-%global docker_tag %{registry}/%{_name}:%{version}
+%global docker_tag %{registry}/%{_name}:%{version}-1
 
 docker build --squash \
     --build-arg https_proxy=${https_proxy} \
@@ -48,5 +48,8 @@ docker save -o %{_name}.tar %{docker_tag}
 /usr/local/share/olcne/%{_name}.tar
 
 %changelog
+* Thu Oct 08 2026 Oracle Cloud Native Environment Authors <noreply@oracle.com> - 3.6.14-2
+- Update dependencies to address security vulnerabilities
+
 * Thu Jul 23 2026 Oracle Cloud Native Environment Authors <noreply@oracle.com> - 3.6.14-1
 - Added Oracle specific build files
