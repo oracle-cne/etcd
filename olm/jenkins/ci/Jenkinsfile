@@ -5,7 +5,7 @@ String version = "3.5.34";
 
 olcnePipeline(
   branchPattern: new BranchPattern(master: 'oracle/release/' + version, feature: '(?!^release/.*$)(^.*$)'),
-  containers: [('container-registry.oracle.com/olcne/etcd:' + version) : 'olcne/etcd:' + version],
+  containers: [('container-registry.oracle.com/olcne/etcd:' + version + '-1') : 'olcne/etcd:' + version + '-1'],
   yumOL8Repos: ['ol8_appstream', 'ol8_codeready_builder'],
   yumOL9Repos: ['ol9_appstream', 'ol9_codeready_builder'],
   platforms: ['ol8', 'ol9'],

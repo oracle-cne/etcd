@@ -32,7 +32,7 @@ A highly-available key value store for shared configuration.
 %build
 %global rpm_name %{_name}-%{version}-%{release}.%{_build_arch}
 yum clean all && yumdownloader --destdir=${PWD}/rpms %{rpm_name}
-%global docker_tag %{registry}/%{_name}:%{version}
+%global docker_tag %{registry}/%{_name}:%{version}-1
 
 docker build --squash \
     --build-arg https_proxy=${https_proxy} \
